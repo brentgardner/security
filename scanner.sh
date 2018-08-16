@@ -4,7 +4,7 @@
 
 mkdir /opt/nmap_diff
 
-hosts="hosts.txt"
+hosts="/opt/scripts/hosts.txt"
 tdate=$(date +%Y-%m-%d)
 ydate=$(date -d yesturday +%Y-%m-%d)
 
