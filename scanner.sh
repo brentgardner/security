@@ -5,8 +5,8 @@
 mkdir /opt/nmap_diff
 
 hosts="hosts.txt"
-tdate = $(date +%Y-%m-%d)
-ydate = $(date -d yesturday +%Y-%m-%d)
+tdate=$(date +%Y-%m-%d)
+ydate=$(date -d yesturday +%Y-%m-%d)
 
 while IFS= read -r host
 do
