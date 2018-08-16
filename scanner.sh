@@ -6,7 +6,7 @@ mkdir /opt/nmap_diff
 
 hosts="/opt/scripts/hosts.txt"
 tdate=$(date +%Y-%m-%d)
-ydate=$(date -d yesturday +%Y-%m-%d)
+ydate=$(date -d yesterday +%Y-%m-%d)
 
 while IFS= read -r host
 do
