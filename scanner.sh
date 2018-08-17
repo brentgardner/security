@@ -10,10 +10,10 @@ ydate=$(date -d yesterday +%Y-%m-%d)
 
 while IFS= read -r host
 do
-    /usr/bin/nmap -T4 -oX /opt/nmap_diff/scan_$tdate_$host.xml $host > /dev/null 2>&1
+    /usr/bin/nmap -Pn -sV --script=banner -oX /opt/nmap_diff/scan_$tdate_$host.xml $host > /dev/null 2>&1
 
     if [ -e /opt/nmap_diff/scan_$ydate_$host.xml ]; then
-        /usr/bin/ndiff /opt/nmap_diff/scan_$ydate_$host.xml /opt/nmap_diff/scan_$tdate_$host.xml > /opt/nmap_diff/diff.txt
+        /usr/bin/ndiff /opt/nmap_diff/scan_$ydate_$host.xml /opt/nmap_diff/scan_$tdate_$host.xml > /opt/nmap_diff/diff_$host.txt
     fi
 
     echo "$host"
