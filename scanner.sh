@@ -13,19 +13,19 @@ else
     echo "diff directory is required and was not provided"
 fi
 
-mkdir $1
+mkdir $2
 
-
-hosts=$0
+diff_dir=$2
+hosts=$1
 tdate=$(date +%Y-%m-%d)
 ydate=$(date -d yesterday +%Y-%m-%d)
 
 while IFS= read -r host
 do
-    /usr/bin/nmap -Pn -sV --script=banner -oX $1/scan_$tdate_$host.xml $host > /dev/null 2>&1
+    /usr/bin/nmap -Pn -sV --script=banner -oX $diff_dir/scan_$tdate_$host.xml $host > /dev/null 2>&1
 
-    if [ -e $1/scan_$ydate_$host.xml ]; then
-        /usr/bin/ndiff $1/scan_$ydate_$host.xml $1/scan_$tdate_$host.xml > $1/diff_$host.txt
+    if [ -e $diff_dir/scan_$ydate_$host.xml ]; then
+        /usr/bin/ndiff $diff_dir/scan_$ydate_$host.xml $diff_dir/scan_$tdate_$host.xml > $diff_dir/diff_$host.txt
     fi
 
     echo "$host"
