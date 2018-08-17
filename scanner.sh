@@ -1,19 +1,31 @@
 #/bin/bash
 
 #port scanning script
+if [ "$0" != "" ]; then
+    echo "hosts file found at $0"
+else
+    echo "host file is required and was not provided"
+fi
 
-mkdir /opt/nmap_diff
+if [ "$1" != "" ]; then
+    echo "diff directory found at $1"
+else
+    echo "diff directory is required and was not provided"
+fi
 
-hosts="/opt/scripts/hosts.txt"
+mkdir $1
+
+
+hosts=$0
 tdate=$(date +%Y-%m-%d)
 ydate=$(date -d yesterday +%Y-%m-%d)
 
 while IFS= read -r host
 do
-    /usr/bin/nmap -Pn -sV --script=banner -oX /opt/nmap_diff/scan_$tdate_$host.xml $host > /dev/null 2>&1
+    /usr/bin/nmap -Pn -sV --script=banner -oX $1/scan_$tdate_$host.xml $host > /dev/null 2>&1
 
-    if [ -e /opt/nmap_diff/scan_$ydate_$host.xml ]; then
-        /usr/bin/ndiff /opt/nmap_diff/scan_$ydate_$host.xml /opt/nmap_diff/scan_$tdate_$host.xml > /opt/nmap_diff/diff_$host.txt
+    if [ -e $1/scan_$ydate_$host.xml ]; then
+        /usr/bin/ndiff $1/scan_$ydate_$host.xml $1/scan_$tdate_$host.xml > $1/diff_$host.txt
     fi
 
     echo "$host"
