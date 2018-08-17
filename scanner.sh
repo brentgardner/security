@@ -1,14 +1,14 @@
 #/bin/bash
 
 #port scanning script
-if [ "$0" != "" ]; then
-    echo "hosts file found at $0"
+if [ "$1" != "" ]; then
+    echo "hosts file found at $1"
 else
     echo "host file is required and was not provided"
 fi
 
-if [ "$1" != "" ]; then
-    echo "diff directory found at $1"
+if [ "$2" != "" ]; then
+    echo "diff directory found at $2"
 else
     echo "diff directory is required and was not provided"
 fi
